@@ -6,6 +6,7 @@ I used moment.js to publish the next train's time and how many minutes until it 
 
 The user inputs the train name, train destination, train arrival time, and frequency between train arrival times. 
 
+You can access this site at:  https://jenyz321.github.io/trainTime/
 # Author
 
 Jennifer Zirk
