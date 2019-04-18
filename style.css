@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+}
+.jumbotron {
+    font-family: 'Dokdo', cursive;
+    background-color: aqua;
+    
+}
+
+.card-header {
+    font-family: 'Arvo', serif;
+    background-color: blueviolet;
+    font-size: 25px;
+}
+.card-body {
+    font-family: 'Arvo', serif;
+    
+}
