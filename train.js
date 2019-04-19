@@ -50,27 +50,28 @@ $("#add-train-btn").on("click", function (event) {
 
 });
 
-trainInfo.ref().on("child_added", function (cSnapshot) {
-  console.log(cSnapshot.val());
+trainInfo.ref().on("child_added", function (childSnapshot) {
+  console.log(childSnapshot.val());
 
-  let tName =  cSnapshot.val(name);
-  let tDestination = cSnapshot.val(destination);
-  let tFirstTrain = cSnapshot.val(FirstTrain);
-  let tFrequency = cSnapshot.val(Frequency);
+  let tName =  childSnapshot.val().name;
+  let tDestination = childSnapshot.val().destination;
+  let tFirstTrain = childSnapshot.val().firstTrain;
+  let tFrequency = childSnapshot.val().frequency;
 
   let arrivalTime = tFirstTrain.split(":");
-  let trainScheduledTime = moment().hours(arrivalTime[0].minutes(arrivalTime[1]));
+  // let trainScheduledTime = arrivalTime.moment().format("LT");
+  let trainScheduledTime = moment().hours(arrivalTime[0]).minutes(arrivalTime[1]);
   let maxMoment = moment.max(moment(), trainScheduledTime);
   let nextTrainArrival;
   let minutesToArrival;
   
   if(maxMoment === trainScheduledTime) {
-    nextTrainArrival = trainScheduledTime.format("hh:mm A");
+    nextTrainArrival = trainScheduledTime.moment().format("hh:mm A");
     minutesToArrival = trainScheduledTime.diff(moment(), "minutes");
   } else {
     let differenceTimes = moment().diff(trainScheduledTime, "minutes");
     let tRemainder = differenceTimes % tFrequency;
-    minutesToArrival = tFrequencey - tRemainder;
+    minutesToArrival = tFrequency - tRemainder;
     nextTrainArrival = moment().add(minutesToArrival, "m").format("hh:mm A");
   }
   console.log("minutesToArrival", minutesToArrival);  
@@ -86,7 +87,7 @@ trainInfo.ref().on("child_added", function (cSnapshot) {
     
 
   );
-    
+
   $("#train-table > tbody").append(newTrain);
 });
 
