@@ -89,6 +89,9 @@ trainInfo.ref().on("child_added", function (childSnapshot) {
   );
 
   $("#train-table > tbody").append(newTrain);
+
+
+  // I need to add a delete button to html and a delete function to clean up the page//
 });
 
 
